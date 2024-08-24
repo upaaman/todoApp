@@ -20,8 +20,20 @@ export const todoSlice = createSlice({
                 return item;
             });
         },
+        editTask: (state, action) => {
+            state.list = state.list.map((item) => {
+                if (item.id === action.payload.id) {
+                    item.value = action.payload.value;
+                    item.checked=false
+                }
+                return item
+            }
+
+            )
+
+        }
     },
 });
 
-export const { addTodo, deleteTodo, checkTask } = todoSlice.actions;
+export const { addTodo, deleteTodo, checkTask, editTask } = todoSlice.actions;
 export default todoSlice.reducer;
