@@ -21,15 +21,21 @@ export const todoSlice = createSlice({
             });
         },
         editTask: (state, action) => {
+            let flag=false;
             state.list = state.list.map((item) => {
                 if (item.id === action.payload.id) {
+                    flag=true
                     item.value = action.payload.value;
                     item.checked=false
                 }
                 return item
             }
-
             )
+            if(!flag){
+                // console.log("hiii")
+                console.log(action.payload)
+                todoSlice.caseReducers.addTodo(state,action);
+            }
 
         }
     },
